@@ -3,127 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#0d1418">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Vibe OIO">
     <link rel="manifest" href="./manifest.json">
-    <title>Vibe - OIO ONE</title>
+    <title>Vibe OIO ONE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
 
-    <div id="app-view">
-        <div id="chat-header" class="topo-simples" style="display:flex; justify-content:space-between; align-items:center;">
-            <h3>Vibe Chat</h3>
-            <i class="fa-solid fa-user-circle" style="font-size: 24px; color: #2da1f8;"></i>
-        </div>
-        <div id="chat"></div>
-        <div class="barra" id="input-bar">
-            <i class="fa-solid fa-camera icon" id="btnFoto"></i>
-            <i class="fa-solid fa-microphone icon" id="btnAudio"></i>
-            <input type="text" id="msgInput" placeholder="Sua vibe..." autocomplete="off">
-            <i class="fa-solid fa-paper-plane icon" id="btnEnviar"></i>
-        </div>
-    </div>
-
-    <section id="tab-contacts" class="view-panel">
-        <div class="topo-simples">
-            <h3>Contatos</h3>
-        </div>
-        <div class="list-container">
+    <main id="main-content">
+        
+        <section id="tab-chats" class="view-panel active">
+            <div id="lista-conversas">
+                <div class="topo-simples"><h3>Mensagens</h3></div>
+                <div id="contatos-recentes" class="list-container"></div>
             </div>
-    </section>
 
-    <section id="tab-podcasts" class="view-panel">
-        <div class="topo-simples">
-            <h3>Podcasts - Meus Áudios</h3>
-        </div>
-        <div class="list-container">
+            <div id="chat-ativo" style="display:none; flex-direction:column; height:100dvh;">
+                <div class="chat-header-telegram">
+                    <i class="fa-solid fa-arrow-left" onclick="voltarParaLista()"></i>
+                    <img id="chat-avatar" src="" style="width:35px; height:35px; border-radius:50%;">
+                    <strong id="chat-nome-usuario" style="color:white; flex:1;">Nome</strong>
+                </div>
+                <div id="chat"></div>
+                <div class="barra">
+                    <i class="fa-solid fa-paperclip icon" onclick="document.getElementById('fotoInput').click()"></i>
+                    <input type="text" id="msgInput" placeholder="Mensagem">
+                    <div id="wrapper-acoes">
+                        <i class="fa-solid fa-microphone icon" id="btnAudio"></i>
+                        <i class="fa-solid fa-paper-plane icon" id="btnEnviar" style="display:none;"></i>
+                    </div>
+                </div>
             </div>
-    </section>
+        </section>
 
-    <section id="tab-perfil" class="view-panel">
-        <div class="topo-simples">
-            <h3>Perfil</h3>
-        </div>
-        <div class="list-container perfil-container">
-            </div>
-    </section>
+        <section id="tab-contacts" class="view-panel"><div class="topo-simples"><h3>Contatos</h3></div><div class="list-container" id="contatos-render"></div></section>
+        <section id="tab-podcasts" class="view-panel"><div class="topo-simples"><h3>Podcasts</h3></div><div class="list-container"></div></section>
+        <section id="tab-perfil" class="view-panel"><div class="topo-simples"><h3>Perfil</h3></div><div class="list-container" id="perfil-render"></div></section>
 
+    </main>
 
     <div id="gaveta-ehub" class="gaveta-container">
-        <div class="handle-area" onclick="fecharGaveta()">
-            <div class="handle-bar"></div>
-        </div>
+        <div class="handle-area" onclick="fecharGaveta()"><div class="handle-bar"></div></div>
         <div class="gaveta-content">
             <h3 style="color:#2da1f8; margin-bottom:20px;">e-Hub OIO ONE</h3>
             <div class="grid-apps">
-                <div class="app-item" onclick="galeriaHub()">
-                    <i class="fa-solid fa-images"></i>
-                    <span>Galeria</span>
-                </div>
-                <div class="app-item" onclick="abrirAppHub('google')">
-                    <i class="fa-brands fa-google"></i>
-                    <span>Google</span>
-                </div>
-                <div class="app-item" onclick="abrirAppHub('toc_azul')">
-                    <i class="fa-solid fa-video" style="color:#007bff;"></i>
-                    <span>Toc Vídeos</span>
-                </div>
-                <div class="app-item" onclick="abrirAppHub('jogos')">
-                    <i class="fa-solid fa-gamepad" style="color:#28a745;"></i>
-                    <span>Jogos</span>
-                </div>
-                <div class="app-item" onclick="abrirAppHub('prefeitura')">
-                    <i class="fa-solid fa-city"></i>
-                    <span>BJ Perdões</span>
-                </div>
-                <div class="app-item" onclick="abrirAppHub('nostalgia')">
-                    <i class="fa-solid fa-tv" style="color:#ff9800;"></i>
-                    <span>Nostalgia</span>
-                </div>
+                <div class="app-item" onclick="abrirAppHub('google')"><i class="fa-brands fa-google"></i><span>Google</span></div>
+                <div class="app-item" onclick="galeriaHub()"><i class="fa-solid fa-images"></i><span>Galeria</span></div>
+                <div class="app-item" onclick="abrirAppHub('prefeitura')"><i class="fa-solid fa-city"></i><span>Prefeitura</span></div>
             </div>
         </div>
     </div>
 
-
     <nav class="bottom-nav">
-        <div class="nav-item active" id="nav-chats" onclick="navegarApp('Chats')">
-            <i class="fa-solid fa-comment"></i>
-            <span>Chats</span>
-        </div>
-        <div class="nav-item" id="nav-explorar" onclick="navegarApp('Explorar')">
-            <i class="fa-solid fa-compass"></i>
-            <span>Explorar</span>
-        </div>
-        <div class="nav-item" id="nav-contacts" onclick="navegarApp('Contacts')">
-            <i class="fa-solid fa-address-book"></i>
-            <span>Contatos</span>
-        </div>
-        <div class="nav-item" id="nav-podcasts" onclick="navegarApp('Podcasts')">
-            <i class="fa-solid fa-microphone"></i>
-            <span>Podcasts</span>
-        </div>
-        <div class="nav-item" id="nav-perfil" onclick="navegarApp('Perfil')">
-            <i class="fa-solid fa-user-circle"></i>
-            <span>Perfil</span>
-        </div>
+        <div class="nav-item active" onclick="navegarApp('Chats')"><i class="fa-solid fa-comment"></i><span>Chats</span></div>
+        <div class="nav-item" onclick="navegarApp('Explorar')"><i class="fa-solid fa-compass"></i><span>Explorar</span></div>
+        <div class="nav-item" onclick="navegarApp('Contacts')"><i class="fa-solid fa-address-book"></i><span>Contatos</span></div>
+        <div class="nav-item" onclick="navegarApp('Podcasts')"><i class="fa-solid fa-microphone"></i><span>Podcasts</span></div>
+        <div class="nav-item" onclick="navegarApp('Perfil')"><i class="fa-solid fa-user-circle"></i><span>Perfil</span></div>
     </nav>
 
-
     <input type="file" id="fotoInput" style="display:none;" accept="image/*">
-
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
-    
     <script src="js/script.js"></script>
-    <script src="apps/ehub_logic.js"></script>
-    <script src="apps/nostalgia.js"></script>
-    <script src="apps/jogos.js"></script>
 </body>
 </html>
