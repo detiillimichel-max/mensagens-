@@ -17,125 +17,104 @@
 </head>
 <body>
 
-    <section id="tab-chats" class="view-section active">
+    <div id="app-view">
+        <div id="chat-header" class="topo-simples" style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>Vibe Chat</h3>
+            <i class="fa-solid fa-user-circle" style="font-size: 24px; color: #2da1f8;"></i>
+        </div>
         <div id="chat"></div>
-        <div class="barra">
+        <div class="barra" id="input-bar">
             <i class="fa-solid fa-camera icon" id="btnFoto"></i>
             <i class="fa-solid fa-microphone icon" id="btnAudio"></i>
             <input type="text" id="msgInput" placeholder="Sua vibe..." autocomplete="off">
             <i class="fa-solid fa-paper-plane icon" id="btnEnviar"></i>
         </div>
-    </section>
+    </div>
 
-    <section id="tab-explorar" class="view-section">
+    <section id="tab-contacts" class="view-panel">
         <div class="topo-simples">
-            <h3>e-Hub OIO ONE</h3>
+            <h3>Contatos</h3>
         </div>
-        <div class="grid-apps" style="padding: 20px;">
-            <div class="app-item" onclick="galeriaHub()">
-                <i class="fa-solid fa-images"></i>
-                <span>Galeria</span>
+        <div class="list-container">
             </div>
-            <div class="app-item" onclick="abrirAppHub('google')">
-                <i class="fa-brands fa-google"></i>
-                <span>Google</span>
-            </div>
-            <div class="app-item" onclick="abrirAppHub('toc_azul')">
-                <i class="fa-solid fa-video" style="color:#007bff;"></i>
-                <span>Toc Vídeos</span>
-            </div>
-            <div class="app-item" onclick="abrirAppHub('jogos')">
-                <i class="fa-solid fa-gamepad" style="color:#28a745;"></i>
-                <span>Jogos</span>
-            </div>
-            <div class="app-item" onclick="abrirAppHub('prefeitura')">
-                <i class="fa-solid fa-city"></i>
-                <span>BJ Perdões</span>
-            </div>
-            <div class="app-item" onclick="abrirAppHub('nostalgia')">
-                <i class="fa-solid fa-tv" style="color:#ff9800;"></i>
-                <span>Nostalgia</span>
-            </div>
-        </div>
     </section>
 
-    <section id="tab-podcasts" class="view-section">
+    <section id="tab-podcasts" class="view-panel">
         <div class="topo-simples">
-            <h3>Podcasts & Arquivos</h3>
+            <h3>Podcasts - Meus Áudios</h3>
         </div>
-        <div style="padding: 20px; text-align: center; color: #888;">
-            <i class="fa-solid fa-microphone-lines" style="font-size: 50px; margin-bottom: 20px;"></i>
-            <p>Seus áudios e podcasts locais aparecerão aqui.</p>
-        </div>
+        <div class="list-container">
+            </div>
     </section>
 
-    <section id="tab-perfil" class="view-section">
-        <div class="perfil-header">
-            <div class="avatar-container">
-                <img src="https://ui-avatars.com/api/?name=Michel+Detilli&background=ffb6c1&color=fff&size=100&rounded=true" alt="Avatar">
-                <div class="online-dot"></div>
-                <div class="camera-btn"><i class="fa-solid fa-camera"></i></div>
-            </div>
-            <h2>Michel Detilli</h2>
-            <span class="status-texto">online</span>
+    <section id="tab-perfil" class="view-panel">
+        <div class="topo-simples">
+            <h3>Perfil</h3>
         </div>
+        <div class="list-container perfil-container">
+            </div>
+    </section>
 
-        <div class="perfil-body">
-            <div class="card-seguranca">
-                <div class="info-seguranca">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <div>
-                        <strong>Segurança da Conta</strong>
-                        <p>Protegido com senha de 4 dígitos</p>
-                    </div>
+
+    <div id="gaveta-ehub" class="gaveta-container">
+        <div class="handle-area" onclick="fecharGaveta()">
+            <div class="handle-bar"></div>
+        </div>
+        <div class="gaveta-content">
+            <h3 style="color:#2da1f8; margin-bottom:20px;">e-Hub OIO ONE</h3>
+            <div class="grid-apps">
+                <div class="app-item" onclick="galeriaHub()">
+                    <i class="fa-solid fa-images"></i>
+                    <span>Galeria</span>
                 </div>
-                <button class="btn-pin">Alterar PIN</button>
-            </div>
-
-            <div class="grid-acoes-perfil">
-                <button class="btn-acao"><i class="fa-solid fa-camera"></i> Definir Foto</button>
-                <button class="btn-acao"><i class="fa-solid fa-pen"></i> Editar Nome</button>
-                <button class="btn-acao"><i class="fa-solid fa-gear"></i> Ajustes</button>
-            </div>
-
-            <div class="card-contato">
-                <span class="label">Celular</span>
-                <p>+55 (11) 97479-0494</p>
-            </div>
-
-            <div class="tabs-posts">
-                <span class="active">Posts</span>
-                <span>Arquivados</span>
-            </div>
-            
-            <div class="posts-area">
-                <i class="fa-solid fa-table-cells" style="margin-bottom:10px; font-size: 20px;"></i>
-                <h4>Nenhum post ainda...</h4>
-                <button class="btn-add-post"><i class="fa-solid fa-camera"></i> Adicione um post</button>
+                <div class="app-item" onclick="abrirAppHub('google')">
+                    <i class="fa-brands fa-google"></i>
+                    <span>Google</span>
+                </div>
+                <div class="app-item" onclick="abrirAppHub('toc_azul')">
+                    <i class="fa-solid fa-video" style="color:#007bff;"></i>
+                    <span>Toc Vídeos</span>
+                </div>
+                <div class="app-item" onclick="abrirAppHub('jogos')">
+                    <i class="fa-solid fa-gamepad" style="color:#28a745;"></i>
+                    <span>Jogos</span>
+                </div>
+                <div class="app-item" onclick="abrirAppHub('prefeitura')">
+                    <i class="fa-solid fa-city"></i>
+                    <span>BJ Perdões</span>
+                </div>
+                <div class="app-item" onclick="abrirAppHub('nostalgia')">
+                    <i class="fa-solid fa-tv" style="color:#ff9800;"></i>
+                    <span>Nostalgia</span>
+                </div>
             </div>
         </div>
+    </div>
 
-        <button class="fab-btn"><i class="fa-solid fa-plus"></i></button>
-    </section>
 
     <nav class="bottom-nav">
-        <div class="nav-item active" onclick="navegarApp('tab-chats', this)">
+        <div class="nav-item active" id="nav-chats" onclick="navegarApp('Chats')">
             <i class="fa-solid fa-comment"></i>
             <span>Chats</span>
         </div>
-        <div class="nav-item" onclick="navegarApp('tab-explorar', this)">
+        <div class="nav-item" id="nav-explorar" onclick="navegarApp('Explorar')">
             <i class="fa-solid fa-compass"></i>
             <span>Explorar</span>
         </div>
-        <div class="nav-item" onclick="navegarApp('tab-podcasts', this)">
+        <div class="nav-item" id="nav-contacts" onclick="navegarApp('Contacts')">
+            <i class="fa-solid fa-address-book"></i>
+            <span>Contatos</span>
+        </div>
+        <div class="nav-item" id="nav-podcasts" onclick="navegarApp('Podcasts')">
             <i class="fa-solid fa-microphone"></i>
             <span>Podcasts</span>
         </div>
-        <div class="nav-item" onclick="navegarApp('tab-perfil', this)">
-            <i class="fa-solid fa-user"></i>
+        <div class="nav-item" id="nav-perfil" onclick="navegarApp('Perfil')">
+            <i class="fa-solid fa-user-circle"></i>
             <span>Perfil</span>
         </div>
     </nav>
+
 
     <input type="file" id="fotoInput" style="display:none;" accept="image/*">
 
@@ -143,7 +122,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
     
     <script src="js/script.js"></script>
-    <script src="js/nav.js"></script> <script src="apps/ehub_logic.js"></script>
+    <script src="apps/ehub_logic.js"></script>
     <script src="apps/nostalgia.js"></script>
     <script src="apps/jogos.js"></script>
 </body>
