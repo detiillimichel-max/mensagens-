@@ -1,48 +1,52 @@
-// --- OIO ONE: MÓDULO EXPLORER ---
+// --- OIO ONE: EXPLORER ENGINE ---
 
 function renderizarTelaExplorer() {
     const container = document.getElementById('app-container');
     
     container.innerHTML = `
-        <div style="padding: 15px;">
-            <h3 style="color: #2da1f8; margin-bottom: 20px;">e-Hub OIO ONE</h3>
-            
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
-                <div class="card-explorer" onclick="abrirModulo('galeria')" style="background: #1e2a3a; padding: 15px; border-radius: 12px; text-align: center;">
-                    <i class="fa-solid fa-image" style="font-size: 24px; color: #2da1f8;"></i>
-                    <p style="color: white; font-size: 12px; margin-top: 8px;">Galeria</p>
+        <div class="explorer-container" style="padding: 20px; animation: fadeIn 0.5s ease;">
+            <header style="margin-bottom: 30px;">
+                <h2 style="color: #2da1f8; font-size: 24px;">Vibe Explorer</h2>
+                <p style="color: gray; font-size: 14px;">Descubra novas experiências</p>
+            </header>
+
+            <div class="grid-explorer" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                
+                <div class="item-exp" onclick="abrirModulo('videos')" style="text-align: center;">
+                    <div style="background: rgba(255, 0, 80, 0.1); padding: 20px; border-radius: 18px; margin-bottom: 8px; border: 1px solid rgba(255, 0, 80, 0.2);">
+                        <i class="fa-solid fa-play" style="color: #ff0050; font-size: 24px;"></i>
+                    </div>
+                    <span style="color: white; font-size: 12px;">Toc Vídeos</span>
                 </div>
 
-                <div class="card-explorer" onclick="window.open('https://google.com', '_blank')" style="background: #1e2a3a; padding: 15px; border-radius: 12px; text-align: center;">
-                    <i class="fa-brands fa-google" style="font-size: 24px; color: #2da1f8;"></i>
-                    <p style="color: white; font-size: 12px; margin-top: 8px;">Google</p>
+                <div class="item-exp" onclick="abrirModulo('nostalgia')" style="text-align: center;">
+                    <div style="background: rgba(255, 152, 0, 0.1); padding: 20px; border-radius: 18px; margin-bottom: 8px; border: 1px solid rgba(255, 152, 0, 0.2);">
+                        <i class="fa-solid fa-film" style="color: #ff9800; font-size: 24px;"></i>
+                    </div>
+                    <span style="color: white; font-size: 12px;">Nostalgia</span>
                 </div>
 
-                <div class="card-explorer" onclick="abrirModulo('videos')" style="background: #1e2a3a; padding: 15px; border-radius: 12px; text-align: center;">
-                    <i class="fa-solid fa-video" style="font-size: 24px; color: #2da1f8;"></i>
-                    <p style="color: white; font-size: 12px; margin-top: 8px;">Toc Vídeos</p>
+                <div class="item-exp" onclick="abrirModulo('jogos')" style="text-align: center;">
+                    <div style="background: rgba(40, 167, 69, 0.1); padding: 20px; border-radius: 18px; margin-bottom: 8px; border: 1px solid rgba(40, 167, 69, 0.2);">
+                        <i class="fa-solid fa-gamepad" style="color: #28a745; font-size: 24px;"></i>
+                    </div>
+                    <span style="color: white; font-size: 12px;">Jogos</span>
                 </div>
 
-                <div class="card-explorer" onclick="abrirModulo('jogos')" style="background: #1e2a3a; padding: 15px; border-radius: 12px; text-align: center;">
-                    <i class="fa-solid fa-gamepad" style="font-size: 24px; color: #2da1f8;"></i>
-                    <p style="color: white; font-size: 12px; margin-top: 8px;">Jogos</p>
+                <div class="item-exp" onclick="window.open('https://google.com', '_blank')" style="text-align: center;">
+                    <div style="background: rgba(45, 161, 248, 0.1); padding: 20px; border-radius: 18px; margin-bottom: 8px; border: 1px solid rgba(45, 161, 248, 0.2);">
+                        <i class="fa-brands fa-google" style="color: #4285F4; font-size: 24px;"></i>
+                    </div>
+                    <span style="color: white; font-size: 12px;">Busca</span>
                 </div>
 
-                <div class="card-explorer" style="background: #1e2a3a; padding: 15px; border-radius: 12px; text-align: center;">
-                    <i class="fa-solid fa-city" style="font-size: 24px; color: #2da1f8;"></i>
-                    <p style="color: white; font-size: 12px; margin-top: 8px;">BJ Perdões</p>
-                </div>
-
-                <div class="card-explorer" style="background: #1e2a3a; padding: 15px; border-radius: 12px; text-align: center;">
-                    <i class="fa-solid fa-tv" style="font-size: 24px; color: #2da1f8;"></i>
-                    <p style="color: white; font-size: 12px; margin-top: 8px;">Nostalgia</p>
-                </div>
             </div>
         </div>
     `;
 }
 
-function abrirModulo(tipo) {
-    console.log("Abrindo módulo:", tipo);
-    // Aqui você pode adicionar as rotas para cada sub-módulo
+function abrirModulo(nome) {
+    if (navigator.vibrate) navigator.vibrate(30);
+    console.log("Abrindo: " + nome);
+    // Lógica para abrir os sub-apps aqui
 }
