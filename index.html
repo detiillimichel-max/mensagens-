@@ -6,13 +6,11 @@
     <meta name="theme-color" content="#0d1418">
     <title>Vibe OIO ONE</title>
 
-    <!-- Manifesto do PWA -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="manifest.json">
 
-    <!-- Estilos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
 
@@ -59,25 +57,22 @@
     <input type="file" id="videoInput" style="display:none;" accept="video/*">
     <input type="file" id="storyInput" style="display:none;" accept="image/*">
 
-    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
     
-    <!-- Scripts principais -->
-    <script src="/js/notifications.js"></script>
-    <script src="/js/stories.js"></script>
-    <script src="/js/chat.js"></script>
-    <script src="/js/explorer.js"></script>
-    <script src="/js/games.js"></script>
-    <script src="/js/perfil.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/stories.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/explorer.js"></script>
+    <script src="js/games.js"></script>
+    <script src="js/perfil.js"></script>
+    <script src="js/main.js"></script>
 
-    <!-- Registro do Service Worker -->
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('sw.js')
           .then(reg => console.log('Service Worker registrado:', reg))
-          .catch(err => console.error('Erro ao registrar Service Worker:', err));
+          .catch(err => console.error('Erro ao registrar SW:', err));
       }
     </script>
 
