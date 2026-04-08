@@ -1,124 +1,149 @@
-/* ARQUIVO: css/theme.css (ESTILOS E COMPONENTES UNIFICADOS) */
+/* OIO ONE - THEME: WHATSAPP + FACEBOOK + TIKTOK STYLE */
+:root {
+    --vibe-blue: #2da1f8;
+    --vibe-dark: #0d1418;
+    --vibe-card: #1a242d;
+    --vibe-text: #ffffff;
+    --vibe-gray: #627b8f;
+    --glass: rgba(255, 255, 255, 0.05);
+}
 
-/* 1. Cores e Fundo Premium (Pega a cor de fundo da foto 1) */
 body {
-    background-color: #0d1418 !important; /* Cor de fundo premium dark da foto 1 */
+    background-color: var(--vibe-dark);
+    color: var(--vibe-text);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
 }
 
+/* --- PERFIL ESTILO FACEBOOK --- */
+.perfil-banner {
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    position: relative;
+}
+
+.perfil-avatar-container {
+    position: absolute;
+    bottom: -40px;
+    left: 20px;
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.perfil-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid var(--vibe-dark);
+    background: #ccc;
+}
+
+.perfil-info-topo {
+    margin-top: 50px;
+    padding: 0 20px;
+}
+
+.perfil-bio {
+    color: var(--vibe-gray);
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+/* --- CHAT ESTILO WHATSAPP --- */
 #chat {
-    background-color: #0d1418 !important;
-    padding-bottom: 80px;
-}
-
-/* 2. Balões de Mensagem (Unificação visual da Foto 1 e Foto 16) */
-.balao {
-    background-color: #1a242d !important; /* Cor mais cinza escuro para bubles */
-    color: #fff !important;
-    border: 1px solid #2d3b45 !important;
-    border-radius: 18px !important;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
-}
-
-/* 3. Barra de Mensagem (Original mantida na Foto 1) */
-.barra {
-    background: #131d24 !important; /* Fundo mais escuro */
-    border-top: 1px solid #1f2933 !important;
-    z-index: 10;
-}
-
-#msgInput {
-    background: #1a242d !important;
-    border: 1px solid #2d3b45 !important;
-}
-
-.icon {
-    color: #2da1f8 !important; /* Azul OIO original */
-}
-
-/* ================= COMPONENTES DE NAVEGAÇÃO (NOVOS) ================= */
-
-/* Contêiner Geral do App e Seções Ocultas */
-#app-view {
     display: flex;
     flex-direction: column;
-    height: calc(100dvh - 65px); /* Desconta a altura do bottom nav */
+    padding: 15px;
+    gap: 8px;
+    background: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); /* Wallpaper Clássico */
+    background-attachment: fixed;
 }
 
-.view-panel {
-    display: none; /* Escondido por padrão */
-    flex: 1;
+.balao {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 15px;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.balao.meu {
+    align-self: flex-end;
+    background-color: #056162;
+    color: white;
+    border-top-right-radius: 2px;
+}
+
+.balao.outro {
+    align-self: flex-start;
+    background-color: #262d31;
+    color: white;
+    border-top-left-radius: 2px;
+}
+
+/* --- EXPLORER ESTILO TIKTOK (Toc Vídeos) --- */
+.feed-tiktok {
+    height: calc(100vh - 70px);
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+.video-card {
+    height: 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    position: relative;
+    background: #000;
+}
+
+.video-ui {
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+    display: flex;
     flex-direction: column;
-    background-color: #0d1418;
-    height: calc(100dvh - 65px);
-    overflow-y: auto;
+    gap: 20px;
+    align-items: center;
 }
 
-.view-panel.active {
-    display: flex; /* Mostra apenas a aba ativa */
+.video-ui i {
+    font-size: 28px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
-.list-container {
-    flex: 1;
-    padding-bottom: 20px;
-}
-
-/* Título Simples (Estilo imitado da foto 16/2/3/4/5) */
-.topo-simples {
-    padding: 15px 20px;
-    background: #131d24;
-    border-bottom: 1px solid #1f2933;
-}
-.topo-simples h3 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
-    color: #2da1f8; /* Azul OIO */
-}
-
-/* ================= NOVO MENU INFERIOR (BOTTOM NAV) ================= */
+/* --- BARRA DE NAVEGAÇÃO LUXURY --- */
 .bottom-nav {
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 65px;
-    background: #131d24;
+    height: 70px;
+    background: rgba(13, 20, 24, 0.95);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-top: 1px solid #1f2933;
-    z-index: 100;
+    border-top: 1px solid var(--glass);
+    z-index: 1000;
 }
 
 .nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #627b8f; /* Cor cinza desativada da foto 16 */
-    font-size: 11px;
-    gap: 4px;
-    cursor: pointer;
+    color: var(--vibe-gray);
+    font-size: 10px;
     transition: 0.3s;
+}
+
+.nav-item.active {
+    color: var(--vibe-blue);
 }
 
 .nav-item i {
     font-size: 20px;
-}
-
-.nav-item.active {
-    color: #2da1f8; /* Azul OIO quando ativo */
-}
-
-/* ================= GAVETA OIO ONE (ORIGINAL MANTIDA) ================= */
-.gaveta-container {
-    background: rgba(13, 29, 36, 0.98) !important; /* Mantém transparência original */
-    border-radius: 20px 20px 0 0 !important;
-}
-
-.app-item {
-    background: #1a242d !important;
-    border: 1px solid #2d3b45 !important;
-}
-
-.app-item i {
-    color: #2da1f8 !important; /* Azul OIO */
+    margin-bottom: 4px;
 }
