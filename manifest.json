@@ -1,22 +1,22 @@
 {
-    "name": "mensagens",
-    "short_name": "Mensagens",
-    "description": "Chat mensagens",
-    "start_url": "/",
-    "scope": "/",
+    "name": "Vibe OIO ONE",
+    "short_name": "Vibe OIO",
+    "description": "Chat e Super App OIO ONE",
+    "start_url": "./index.html",
+    "scope": "./",
     "display": "standalone",
-    "background_color": "#000000",
-    "theme_color": "#1a73e8",
+    "background_color": "#0d1418",
+    "theme_color": "#2da1f8",
     "orientation": "portrait",
     "icons": [
         {
-            "src": "/icon-192-1.png",
+            "src": "icon-192-1.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "/icon-512-3.png",
+            "src": "icon-512-3.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
