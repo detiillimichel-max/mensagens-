@@ -3,28 +3,40 @@
 function renderizarTelaChats() {
     const container = document.getElementById('app-container');
     
-    // Estrutura base da tela de chat
+    // 1. Renderiza a estrutura (Barra de Stories + Lista de Mensagens)
     container.innerHTML = `
-        <div class="topo-chat" style="padding: 15px; border-bottom: 1px solid #1e2a3a;">
-            <h3 style="color: #2da1f8; margin: 0;">WhatsApp Vibe</h3>
+        <div class="header-vibe" style="padding: 15px; background: rgba(13, 20, 24, 0.8); backdrop-filter: blur(10px); sticky; top: 0; z-index: 100;">
+            <h3 style="color: #2da1f8; margin: 0; font-weight: 800; letter-spacing: 1px;">VIBE CHAT</h3>
         </div>
-        <div id="lista-mensagens" style="padding: 15px; overflow-y: auto; height: calc(100vh - 150px);">
+
+        <div id="container-stories-vibe">
+            ${typeof renderStoriesBar === 'function' ? renderStoriesBar() : ''}
+        </div>
+
+        <div id="lista-conversas" style="padding: 10px; padding-bottom: 80px;">
             <p style="text-align: center; color: gray; margin-top: 30px;">
-                <i class="fa-solid fa-spinner fa-spin" style="margin-right: 10px;"></i> Conectando ao servidor...
+                <i class="fa-solid fa-spinner fa-spin" style="margin-right: 10px;"></i> Carregando conversas...
             </p>
         </div>
     `;
 
-    // Aqui acionamos o Firebase (Se o seu script.js antigo estiver linkado no index.html, ele vai puxar as mensagens reais)
+    // 2. Ativa os Stories e carrega as mensagens
+    if (typeof carregarStories === 'function') carregarStories();
+    
+    // Simulação de lista de chat (Aqui você conectará com seu Firebase mensagens)
     setTimeout(() => {
-        const lista = document.getElementById('lista-mensagens');
+        const lista = document.getElementById('lista-conversas');
         if(lista) {
             lista.innerHTML = `
-                <div style="text-align: center; padding: 20px;">
-                    <i class="fa-regular fa-comments" style="font-size: 50px; color: #1e2a3a; margin-bottom: 15px;"></i>
-                    <p style="color: gray;">Nenhuma mensagem nova no momento.</p>
+                <div class="chat-item" onclick="abrirConversa('Bibibi')" style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(30, 42, 58, 0.3); border-radius: 15px; margin-bottom: 10px; border: 1px solid rgba(45, 161, 248, 0.05);">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background: #ff0050; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">B</div>
+                    <div style="flex: 1;">
+                        <h4 style="color: white; margin: 0;">Bibibi</h4>
+                        <p style="color: gray; margin: 5px 0 0 0; font-size: 13px;">Online</p>
+                    </div>
+                    <span style="color: #2da1f8; font-size: 10px;">Agora</span>
                 </div>
             `;
         }
-    }, 2000); // Simula um tempo de carregamento para evitar a tela vazia de cara
+    }, 1000);
 }
