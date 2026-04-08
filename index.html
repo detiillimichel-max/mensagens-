@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#0d1418">
     <title>Vibe OIO ONE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -11,61 +11,60 @@
 </head>
 <body>
 
-    <main id="main-content">
-        
-        <section id="tab-chats" class="view-panel active">
-            <div id="lista-conversas">
-                <div class="topo-simples"><h3>Mensagens</h3></div>
-                <div id="contatos-recentes" class="list-container"></div>
-            </div>
+    <main id="app-container">
+        </main>
 
-            <div id="chat-ativo" style="display:none; flex-direction:column; height:100dvh;">
-                <div class="chat-header-telegram">
-                    <i class="fa-solid fa-arrow-left" onclick="voltarParaLista()"></i>
-                    <img id="chat-avatar" src="" style="width:35px; height:35px; border-radius:50%;">
-                    <strong id="chat-nome-usuario" style="color:white; flex:1;">Nome</strong>
-                </div>
-                <div id="chat"></div>
-                <div class="barra">
-                    <i class="fa-solid fa-paperclip icon" onclick="document.getElementById('fotoInput').click()"></i>
-                    <input type="text" id="msgInput" placeholder="Mensagem">
-                    <div id="wrapper-acoes">
-                        <i class="fa-solid fa-microphone icon" id="btnAudio"></i>
-                        <i class="fa-solid fa-paper-plane icon" id="btnEnviar" style="display:none;"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="tab-contacts" class="view-panel"><div class="topo-simples"><h3>Contatos</h3></div><div class="list-container" id="contatos-render"></div></section>
-        <section id="tab-podcasts" class="view-panel"><div class="topo-simples"><h3>Podcasts</h3></div><div class="list-container"></div></section>
-        <section id="tab-perfil" class="view-panel"><div class="topo-simples"><h3>Perfil</h3></div><div class="list-container" id="perfil-render"></div></section>
-
-    </main>
-
-    <div id="gaveta-ehub" class="gaveta-container">
-        <div class="handle-area" onclick="fecharGaveta()"><div class="handle-bar"></div></div>
+    <div id="gaveta-explorer" class="gaveta-container">
+        <div class="handle-area" onclick="fecharExplorer()"><div class="handle-bar"></div></div>
         <div class="gaveta-content">
-            <h3 style="color:#2da1f8; margin-bottom:20px;">e-Hub OIO ONE</h3>
+            <h3 style="color:#2da1f8; margin-bottom:20px;">Vibe Explorer</h3>
             <div class="grid-apps">
-                <div class="app-item" onclick="abrirAppHub('google')"><i class="fa-brands fa-google"></i><span>Google</span></div>
-                <div class="app-item" onclick="galeriaHub()"><i class="fa-solid fa-images"></i><span>Galeria</span></div>
-                <div class="app-item" onclick="abrirAppHub('prefeitura')"><i class="fa-solid fa-city"></i><span>Prefeitura</span></div>
+                <div class="app-item" onclick="abrirTocVideos()">
+                    <i class="fa-solid fa-play" style="color:#ff0050;"></i>
+                    <span>Toc Vídeos</span>
+                </div>
+                <div class="app-item" onclick="abrirNostalgia()">
+                    <i class="fa-solid fa-film" style="color:#ff9800;"></i>
+                    <span>Nostalgia</span>
+                </div>
+                <div class="app-item" onclick="iniciarSnake()">
+                    <i class="fa-solid fa-gamepad" style="color:#28a745;"></i>
+                    <span>Jogos</span>
+                </div>
+                <div class="app-item" onclick="document.getElementById('videoInput').click()">
+                    <i class="fa-solid fa-circle-plus" style="color:#2da1f8;"></i>
+                    <span>Postar</span>
+                </div>
             </div>
         </div>
     </div>
 
     <nav class="bottom-nav">
-        <div class="nav-item active" onclick="navegarApp('Chats')"><i class="fa-solid fa-comment"></i><span>Chats</span></div>
-        <div class="nav-item" onclick="navegarApp('Explorar')"><i class="fa-solid fa-compass"></i><span>Explorar</span></div>
-        <div class="nav-item" onclick="navegarApp('Contacts')"><i class="fa-solid fa-address-book"></i><span>Contatos</span></div>
-        <div class="nav-item" onclick="navegarApp('Podcasts')"><i class="fa-solid fa-microphone"></i><span>Podcasts</span></div>
-        <div class="nav-item" onclick="navegarApp('Perfil')"><i class="fa-solid fa-user-circle"></i><span>Perfil</span></div>
+        <div class="nav-item active" id="nav-chats" onclick="navegar('chats')">
+            <i class="fa-solid fa-comment"></i><span>Chats</span>
+        </div>
+        <div class="nav-item" id="nav-explorar" onclick="abrirExplorer()">
+            <i class="fa-solid fa-compass"></i><span>Explorer</span>
+        </div>
+        <div class="nav-item" id="nav-perfil" onclick="navegar('perfil')">
+            <i class="fa-solid fa-user-circle"></i><span>Perfil</span>
+        </div>
     </nav>
 
     <input type="file" id="fotoInput" style="display:none;" accept="image/*">
+    <input type="file" id="videoInput" style="display:none;" accept="video/*">
+    <input type="file" id="storyInput" style="display:none;" accept="image/*">
+
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
-    <script src="js/script.js"></script>
+    
+    <script src="js/notifications.js"></script>
+    <script src="js/stories.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/explorer.js"></script>
+    <script src="js/games.js"></script>
+    <script src="js/perfil.js"></script>
+    <script src="js/main.js"></script>
+
 </body>
 </html>
