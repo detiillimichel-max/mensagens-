@@ -1,62 +1,50 @@
-// --- OIO ONE: GERENCIADOR DE TELAS MODULAR ---
+// --- OIO ONE: GERENCIADOR DE TELAS CENTRAL ---
 
 const appContainer = document.getElementById('app-container');
 
 function navegar(tela) {
-    // Vibrate para dar sensação de app nativo
     if(navigator.vibrate) navigator.vibrate(20);
+    
+    // Fecha o explorer se ele estiver aberto ao navegar
+    if(typeof fecharExplorer === 'function') fecharExplorer();
 
     switch(tela) {
         case 'chats':
-            renderChats();
+            if (typeof renderizarTelaChats === 'function') {
+                renderizarTelaChats();
+            } else {
+                renderChatsFallback();
+            }
             break;
         case 'perfil':
-            renderPerfil();
+            if (typeof renderizarTelaPerfil === 'function') {
+                renderizarTelaPerfil();
+            } else {
+                renderPerfilFallback();
+            }
+            break;
+        case 'explorer':
+            // A lógica de abrir o explorer já está no nav.js
             break;
     }
 }
 
-// RENDERIZADOR DO PERFIL (Estilo Facebook)
-function renderPerfil() {
+// Fallback caso o módulo de perfil não carregue
+function renderPerfilFallback() {
     const nick = localStorage.getItem("vibe_user") || "Usuário Vibe";
     appContainer.innerHTML = `
-        <div class="perfil-banner">
-            <div class="perfil-avatar-container">
-                <img src="https://ui-avatars.com/api/?name=${nick}&size=128" class="perfil-avatar">
-                <h2 style="margin-bottom: 10px;">${nick}</h2>
-            </div>
-        </div>
-        
-        <div class="perfil-info-topo">
-            <div class="perfil-bio">🚀 Desenvolvedor Mobile na OIO ONE | Criando o futuro do entretenimento.</div>
-            <div style="display:flex; gap:10px; margin-top:15px;">
-                <button style="flex:1; padding:10px; border-radius:8px; border:none; background:var(--vibe-blue); color:white; font-weight:bold;">Editar Perfil</button>
-                <button style="padding:10px; border-radius:8px; border:none; background:var(--vibe-card); color:white;"><i class="fa-solid fa-ellipsis"></i></button>
-            </div>
-        </div>
-
-        <div style="padding:20px;">
-            <h4 style="border-bottom: 1px solid var(--glass); padding-bottom:10px;">Fotos e Posts</h4>
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px;">
-                <div style="height:150px; background:#333; border-radius:10px;"></div>
-                <div style="height:150px; background:#333; border-radius:10px;"></div>
-            </div>
+        <div style="padding:20px; text-align:center;">
+            <img src="https://ui-avatars.com/api/?name=${nick}" style="border-radius:50%; width:100px;">
+            <h2>${nick}</h2>
+            <p>Módulo de perfil em carregamento...</p>
         </div>
     `;
 }
 
-// RENDERIZADOR DA LISTA DE CHATS (Estilo WhatsApp)
-function renderChats() {
-    appContainer.innerHTML = `
-        <div class="topo-simples" style="padding:20px;">
-            <h3>WhatsApp Vibe</h3>
-        </div>
-        <div id="lista-conversas">
-            <div style="padding:40px; text-align:center; color:var(--vibe-gray);">Carregando mensagens...</div>
-        </div>
-    `;
-    // Aqui chamaremos a função de carregar do Firebase que já temos
+// Fallback caso o módulo de chat não carregue
+function renderChatsFallback() {
+    appContainer.innerHTML = `<div style="padding:20px; text-align:center;"><h3>Carregando Mensagens...</h3></div>`;
 }
 
-// Inicia na tela de chats
+// Inicia na tela de chats ao carregar
 document.addEventListener('DOMContentLoaded', () => navegar('chats'));
