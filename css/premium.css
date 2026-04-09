@@ -1,0 +1,71 @@
+/* Estilo do Podcast Card */
+.podcast-item {
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    margin-bottom: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.pod-cover {
+    width: 55px; 
+    height: 55px; 
+    background: linear-gradient(135deg, #2da1f8, #1a73e8);
+    border-radius: 15px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+
+.pod-details { flex: 1; }
+
+.pod-title { 
+    font-size: 16px; 
+    margin: 0; 
+    color: #fff; 
+    font-weight: 600;
+}
+
+.pod-meta { 
+    font-size: 12px; 
+    color: #aaa; 
+    margin: 6px 0; 
+}
+
+.pod-progress-bar { 
+    height: 4px; 
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 10px; 
+    overflow: hidden;
+}
+
+.progress-fill { 
+    height: 100%; 
+    background: #2da1f8; 
+    box-shadow: 0 0 10px #2da1f8;
+}
+
+.pod-action { 
+    font-size: 30px; 
+    color: #2da1f8; 
+    transition: transform 0.2s;
+}
+
+.pod-action:active { transform: scale(0.9); }
+
+/* Animação de Entrada */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
