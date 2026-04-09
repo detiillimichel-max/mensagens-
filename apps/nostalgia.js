@@ -9,7 +9,7 @@ function carregarNostalgia() {
     console.log("📺 Lista de nostalgia pronta para curtir!");
 }
 
-// Reação com Emoji Nativo que você pediu 😊
+// Reação com Emoji Nativo que você pediu 
 function reagirNostalgia(emoji) {
     const user = localStorage.getItem("vibe_user") || "Usuário";
     // Salva no Firebase sem gastar quase nada
