@@ -60,19 +60,32 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
     
+    <script src="js/som.js"></script>
     <script src="js/notifications.js"></script>
     <script src="js/stories.js"></script>
+    <script src="js/videos.js"></script>
     <script src="js/chat.js"></script>
     <script src="js/explorer.js"></script>
     <script src="js/games.js"></script>
     <script src="js/perfil.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/marketplace.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/nav.js"></script>
+    
     <script src="js/main.js"></script>
 
     <script>
+      // Força a atualização do Service Worker v2
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js')
-          .then(reg => console.log('Service Worker registrado:', reg))
-          .catch(err => console.error('Erro ao registrar SW:', err));
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js?v=2')
+            .then(reg => {
+              console.log('SW v2 Rodando');
+              reg.update(); 
+            })
+            .catch(err => console.error('Erro SW:', err));
+        });
       }
     </script>
 
