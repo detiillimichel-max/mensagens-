@@ -96,3 +96,48 @@ function renderContatosFallback() {
 
 // Inicia na tela de chats ao carregar o site
 document.addEventListener('DOMContentLoaded', () => navegar('chats'));
+// --- OIO ONE: GERENCIADOR CENTRAL ---
+const appContainer = document.getElementById('app-container');
+
+function navegar(tela) {
+    if(navigator.vibrate) navigator.vibrate(20);
+    
+    // 1. Fecha o Explorer se estiver aberto
+    if(typeof fecharExplorer === 'function') fecharExplorer();
+
+    // 2. Marca o ícone ativo na barra inferior
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    const itemAtivo = document.getElementById('nav-' + tela);
+    if(itemAtivo) itemAtivo.classList.add('active');
+
+    // 3. Tenta carregar o módulo. Se não existir, mostra o erro (Fallback)
+    switch(tela) {
+        case 'chats':
+            (typeof renderizarTelaChats === 'function') ? renderizarTelaChats() : renderError("Chat");
+            break;
+        case 'perfil':
+            (typeof renderizarTelaPerfil === 'function') ? renderizarTelaPerfil() : renderError("Perfil");
+            break;
+        case 'podcasts':
+            (typeof renderizarTelaPodcasts === 'function') ? renderizarTelaPodcasts() : renderError("Podcasts");
+            break;
+        case 'contatos':
+            (typeof renderizarTelaContatos === 'function') ? renderizarTelaContatos() : renderError("Contatos");
+            break;
+        case 'explorar':
+            if(typeof abrirExplorer === 'function') abrirExplorer();
+            break;
+    }
+}
+
+function renderError(modulo) {
+    appContainer.innerHTML = `
+        <div style="padding:50px; text-align:center; color:gray;">
+            <i class="fas fa-exclamation-triangle" style="font-size:40px; color:#2da1f8; margin-bottom:20px;"></i>
+            <h3>Módulo ${modulo} indisponível</h3>
+            <p>Verifique se o arquivo js/modules/${modulo.toLowerCase()}.js foi carregado no index.</p>
+        </div>`;
+}
+
+// Iniciar sempre no Chat
+document.addEventListener('DOMContentLoaded', () => navegar('chats'));
